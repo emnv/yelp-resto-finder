@@ -2,6 +2,8 @@
 
 A Next.js App Router app for finding restaurants by city with the Yelp Fusion API. The browser sends the search term to a secure internal API route, and the server calls Yelp using `process.env.YELP_API_KEY` so the API key never reaches the client.
 
+The approach for this app was to keep the architecture simple, secure, and easy to maintain. The client handles the search form, loading state, error state, restaurant cards, and pagination, while the server-side route is responsible for validating the request, calling Yelp, and returning a cleaned response for the UI. This keeps the API key protected, limits the amount of Yelp data exposed to the browser, and makes the frontend easier to reason about because it only works with the fields it needs.
+
 ## Features
 
 - Search restaurants by city name
@@ -34,7 +36,19 @@ You can create a Yelp API key from the Yelp for Developers portal.
 
 ## Environment Setup
 
-Create or update a local environment file named `.env.local` in the project root:
+Copy the example environment file to `.env.local` (recommended) or `.env` in the project root:
+
+```bash
+cp .env.example .env.local
+```
+
+This also works in Windows PowerShell. If you prefer the native PowerShell command, you can use:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+Then update the copied file with your Yelp API key:
 
 ```env
 YELP_API_KEY=your_yelp_api_key_here
@@ -44,7 +58,7 @@ Important:
 
 - Do not expose the API key to the client.
 - Do not rename it to `NEXT_PUBLIC_YELP_API_KEY`.
-- Restart the dev server after changing `.env.local`.
+- Restart the dev server after changing `.env.local` or `.env`.
 
 ## Install Dependencies
 
@@ -121,6 +135,7 @@ app/
 	layout.js         # Root layout and metadata
 	page.js           # Main search UI, results view, and pagination controls
 next.config.mjs     # Remote image configuration for Yelp CDN images
+.env.example        # Example environment variables
 .env.local          # Local Yelp API key
 ```
 
@@ -178,9 +193,9 @@ Pagination fields returned to the client:
 
 If you see an error about the Yelp API key not being configured:
 
-- Confirm `.env.local` exists in the project root.
+- Confirm you copied `.env.example` to `.env.local` or `.env` in the project root.
 - Confirm the variable name is exactly `YELP_API_KEY`.
-- Restart the dev server after editing `.env.local`.
+- Restart the dev server after editing `.env.local` or `.env`.
 
 ### Yelp request fails
 

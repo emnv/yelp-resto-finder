@@ -419,6 +419,7 @@ export default function Home() {
                                 src={restaurant.imageUrl}
                                 alt={restaurant.name}
                                 fill
+                                unoptimized
                                 sizes="(max-width: 1024px) 100vw, 320px"
                                 className="object-cover transition duration-700 group-hover:scale-105"
                               />
