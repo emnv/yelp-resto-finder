@@ -164,7 +164,6 @@ Pagination fields returned to the client:
 ## Pagination Notes
 
 - The UI shows 10 items per page.
-- The Yelp search API supports more than 15 results.
 - This app caps paging to the first 240 results because Yelp search offsets are limited to that range.
 
 ## Image Handling
